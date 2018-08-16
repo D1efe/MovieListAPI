@@ -1,25 +1,36 @@
 package com.qa.service;
 
-import com.qa.constants.Constants;
-import com.qa.utility.JSONUtility;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.qa.Domain.Movie;
+import com.qa.repository.MovieDBRepository;
+
+@Service
 public class MovieService {
 	
-	JSONUtility util = new JSONUtility();
-	Constants constant = new Constants();
+	@Autowired
+	private MovieDBRepository movieDB;
 	
-	public String allMovies() {
-		
-		return null;
-		
+	public MovieService(MovieDBRepository movieDBRepository) {
+		this.movieDB = movieDB;
 	}
 	
-	public String findMovie(String key) {
-		
-		String url = constant.MOVIE_SEARCH_URL + key;
-
-		return key;
-		
+	//list all movies
+	public Iterable<Movie> allMovies(){
+		return movieDB.findAll();
+	}
+	
+	//save a single movie
+	public Movie save(Movie movie) {
+		return movieDB.save(movie);
+	}
+	
+	//save multiple movies
+	public Iterable<Movie> allMovies(List<Movie> movies) {
+		return movieDB.saveAll(movies);
 	}
 	
 

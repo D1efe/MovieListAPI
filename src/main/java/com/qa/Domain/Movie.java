@@ -1,31 +1,46 @@
 package com.qa.Domain;
 
-import java.io.IOException;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
-import org.json.simple.parser.ParseException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({ "name", "id", "popularity", "description", "img", "releaseDate" })
+
+@Entity
 public class Movie {
 
-	private String name;
+	@Id
+	@JsonProperty("id")
 	private String id;
+	@JsonProperty("title")
+	private String name;
+	@JsonProperty("popularity")
 	private String popularity;
+	@JsonProperty("overview")
 	private String description;
-	private List<String> genre;
+	@JsonProperty("img")
 	private String img;
+	@JsonProperty("release_date")
 	private String releaseDate;
 
-	private JSONdata data;
+	public Movie() {
 
-	public Movie(String name) throws IOException, ParseException {
-		data = new JSONdata(name);
-		this.name = data.getjName();
-		this.id = data.getjId();
-		this.popularity = data.getjPopularity();
-		this.description = data.getjDescription();
-		// this.genre = data.getjGenre();
-		this.img = data.getImageUrl();
-		this.releaseDate = data.getjReleaseDate();
+	}
+
+	public Movie(String name) {
+		this.name = name;
+
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	
+	public String getId() {
+		return id;
 	}
 
 	public void setName(String name) {
@@ -35,33 +50,37 @@ public class Movie {
 	public String getName() {
 		return name;
 	}
-
-	public String getId() {
-		return id;
+	
+	public void setPopularity(String popularity) {
+		this.popularity = popularity;
 	}
 
 	public String getPopularity() {
 		return popularity;
 	}
 	
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	public String getDescription() {
 		return description;
 	}
-	
-	public List<String> getGenre() {
-		return genre;
-	}	
 
+	public void setImg(String img) {
+		this.img = img;
+	}
+	
 	public String getImg() {
 		return img;
+	}
+
+	public void setReleaseDate(String releaseDate) {
+		this.releaseDate = releaseDate;
 	}
 	
 	public String getReleaseDate() {
 		return releaseDate;
 	}
-
-
-
-
 
 }
