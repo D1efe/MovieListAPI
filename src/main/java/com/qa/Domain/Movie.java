@@ -31,10 +31,15 @@ public class Movie {
 
 	}
 
-	public Movie(String name) {
+	public Movie(String id, String name, String popularity, String description, String img, String releaseDate) {
+		this.id = id;
 		this.name = name;
-
+		this.popularity = popularity;
+		this.description = description;
+		this.img = img;
+		this.releaseDate = releaseDate;
 	}
+	
 	public void setId(String id) {
 		this.id = id;
 	}
