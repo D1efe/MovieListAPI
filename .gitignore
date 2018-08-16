@@ -1,6 +1,8 @@
 settings
 target
+.idea
 .classpath
 .factorypath
 .project
 bin
+/.metadata/
