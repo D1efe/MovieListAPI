@@ -22,7 +22,12 @@ public class MovieService {
 		this.movieDB = movieDB;
 	}
 	
-	public Movie[] everyMovie() {
+	private void setUp() {
+		RestTemplate rest = new RestTemplate();
+		Movie movie = rest.getForObject(constant.MOVIE_URL_1, Movie.class);
+	}
+	
+	public Movie everyMovie() {
 		
 		RestTemplate rest = new RestTemplate();
 		Movie movie = rest.getForObject(constant.MOVIE_URL_1, Movie.class);
@@ -50,6 +55,7 @@ public class MovieService {
 		Movie movie = rest.getForObject(constant.MOVIE_URL_1, Movie.class);
 		return movie;
 	}
+	
 	
 
 }
