@@ -5,14 +5,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.qa.Domain.Movie;
-import com.qa.Domain.MovieInfo;
 import com.qa.constants.Constants;
+import com.qa.utility.JSONUtility;
 
 @Service
 public class MovieService {
 
 	@Autowired
 	private Movie movie;
+	private JSONUtility util;
 
 	private Constants constant;
 
@@ -21,23 +22,19 @@ public class MovieService {
 		movie = rest.getForObject(url, Movie.class);
 	}
 
-	public Movie currentMovies() {
-
+	public String currentMovies() {
 		setUp(constant.CURRENT_MOVIE);
-		return movie;
+		return util.getJSONForObject(movie);
 	}
 
-	public Movie upcomingMovies() {
-
+	public String upcomingMovies() {
 		setUp(constant.UPCOMING_MOVIE);
-		return movie;
-
+		return util.getJSONForObject(movie);
 	}
 
-	public Movie findMovie(String search) {
-
+	public String findMovie(String search) {
 		setUp(constant.SEARCH_MOVIE + search);
-		return movie;
+		return util.getJSONForObject(movie);
 	}
 
 }

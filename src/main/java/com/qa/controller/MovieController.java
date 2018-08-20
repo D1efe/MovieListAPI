@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.qa.Domain.Movie;
 import com.qa.service.MovieService;
 
 @RestController
@@ -23,24 +22,25 @@ public class MovieController {
 
 	@GetMapping("/current-movies/")
 	@ResponseBody
-	public Movie getCurrentMovies() {
+	public String getCurrentMovies() {
 		return service.currentMovies();
-
 	}
 	
 	@GetMapping("/upcoming-movies/")
 	@ResponseBody
-	public Movie getUpcomingMovies() {
+	public String getUpcomingMovies() {
 		return service.upcomingMovies();
-
 	}
 	
 	@GetMapping("/find-movie/{search}")
 	@ResponseBody
-	public Movie searchForMovie(@PathVariable String search) {
+	public String searchForMovie(@PathVariable String search) {
 		return service.findMovie(search);
-
 	}
 	
-	
+	@GetMapping("/test/")
+	@ResponseBody
+	public String test() {
+		return "test was successful";
+	}
 }
