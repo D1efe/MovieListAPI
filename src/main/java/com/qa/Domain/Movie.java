@@ -1,91 +1,36 @@
 package com.qa.Domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "name", "id", "popularity", "description", "img", "releaseDate" })
 
-@Entity
+@Component
 public class Movie {
+	
+	@JsonProperty("results")
+	private Movie movieDetails[];
 
-	@Id
-	@JsonProperty("id")
-	private String id;
-	@JsonProperty("title")
-	private String name;
-	@JsonProperty("popularity")
-	private String popularity;
-	@JsonProperty("overview")
-	private String description;
-	@JsonProperty("img")
-	private String img;
-	@JsonProperty("release_date")
-	private String releaseDate;
-
+	public Movie (Movie[] movieDetails) {
+		this.movieDetails = movieDetails;
+	}
+	
 	public Movie() {
-
-	}
-
-	public Movie(String id, String name, String popularity, String description, String img, String releaseDate) {
-		this.id = id;
-		this.name = name;
-		this.popularity = popularity;
-		this.description = description;
-		this.img = img;
-		this.releaseDate = releaseDate;
+		
 	}
 	
-	public void setId(String id) {
-		this.id = id;
+	public void setMovieDetails(Movie[] movieDetails) {
+		this.movieDetails = movieDetails;
 	}
 	
-	public String getId() {
-		return id;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getName() {
-		return name;
+	public Movie[] getMovieDetails() {
+		return movieDetails;
 	}
 	
-	public void setPopularity(String popularity) {
-		this.popularity = popularity;
+	@Override
+	public String toString() {
+		return super.toString();
 	}
-
-	public String getPopularity() {
-		return popularity;
-	}
-	
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setImg(String img) {
-		this.img = img;
-	}
-	
-	public String getImg() {
-		return img;
-	}
-
-	public void setReleaseDate(String releaseDate) {
-		this.releaseDate = releaseDate;
-	}
-	
-	public String getReleaseDate() {
-		return releaseDate;
-	}
-
 }

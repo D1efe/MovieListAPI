@@ -1,6 +1,7 @@
 package com.qa.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,29 +16,31 @@ public class MovieController {
 
 	@Autowired
 	private MovieService service;
-	
+
 	public MovieController(MovieService service) {
 		this.service = service;
 	}
 
-	@RequestMapping("/all-movies/")
+	@GetMapping("/current-movies/")
 	@ResponseBody
-	public Iterable<Movie> getMovies() {
-		return service.allMovies();
-
-		/*
-		 * @RequestMapping("/search-movie/{key}")
-		 * 
-		 * @ResponseBody public String findMovie(@PathVariable String key) { return
-		 * service.findMovie(key); }
-		 */
-
-		/*
-		 * @RequestMapping("/all-movies")
-		 * 
-		 * @ResponseBody public String allMovies() { return service.allMovies(movies)();
-		 * }
-		 */
+	public Movie getCurrentMovies() {
+		return service.currentMovies();
 
 	}
+	
+	@GetMapping("/upcoming-movies/")
+	@ResponseBody
+	public Movie getUpcomingMovies() {
+		return service.upcomingMovies();
+
+	}
+	
+	@GetMapping("/find-movie/{search}")
+	@ResponseBody
+	public Movie searchForMovie(@PathVariable String search) {
+		return service.findMovie(search);
+
+	}
+	
+	
 }
