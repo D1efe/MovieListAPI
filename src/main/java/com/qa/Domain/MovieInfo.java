@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "name", "id", "popularity", "description", "img", "releaseDate" })
+@JsonPropertyOrder({ "id", "title", "popularity", "description", "img", "releaseDate" })
 
 @Component
 public class MovieInfo {

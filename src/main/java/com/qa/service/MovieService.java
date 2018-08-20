@@ -15,6 +15,7 @@ public class MovieService {
 	private Movie movie;
 	private JSONUtility util;
 
+	@Autowired
 	private Constants constant;
 
 	private void setUp(String url) {

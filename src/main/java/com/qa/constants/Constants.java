@@ -1,5 +1,8 @@
 package com.qa.constants;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Constants {
 	
 	//API key provided by TMDb
