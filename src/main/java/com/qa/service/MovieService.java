@@ -6,14 +6,12 @@ import org.springframework.web.client.RestTemplate;
 
 import com.qa.Domain.Movie;
 import com.qa.constants.Constants;
-import com.qa.utility.JSONUtility;
 
 @Service
 public class MovieService {
 
 	@Autowired
 	private Movie movie;
-	private JSONUtility util;
 
 	@Autowired
 	private Constants constant;
@@ -23,19 +21,19 @@ public class MovieService {
 		movie = rest.getForObject(url, Movie.class);
 	}
 
-	public String currentMovies() {
+	public Movie currentMovies() {
 		setUp(constant.CURRENT_MOVIE);
-		return util.getJSONForObject(movie);
+		return movie;
 	}
 
-	public String upcomingMovies() {
+	public Movie upcomingMovies() {
 		setUp(constant.UPCOMING_MOVIE);
-		return util.getJSONForObject(movie);
+		return movie;
 	}
 
-	public String findMovie(String search) {
+	public Movie findMovie(String search) {
 		setUp(constant.SEARCH_MOVIE + search);
-		return util.getJSONForObject(movie);
+		return movie;
 	}
 
 }

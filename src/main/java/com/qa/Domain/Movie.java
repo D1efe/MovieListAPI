@@ -1,5 +1,7 @@
 package com.qa.Domain;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -14,9 +16,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class Movie {
 	
 	@JsonProperty("results")
-	private Movie movieDetails[];
+	private List<MovieInfo> movieDetails;
 
-	public Movie (Movie[] movieDetails) {
+	public Movie (List<MovieInfo> movieDetails) {
 		this.movieDetails = movieDetails;
 	}
 	
@@ -24,11 +26,11 @@ public class Movie {
 		
 	}
 	
-	public void setMovieDetails(Movie[] movieDetails) {
+	public void setMovieDetails(List<MovieInfo> movieDetails) {
 		this.movieDetails = movieDetails;
 	}
 	
-	public Movie[] getMovieDetails() {
+	public List<MovieInfo> getMovieDetails() {
 		return movieDetails;
 	}
 	
