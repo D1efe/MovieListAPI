@@ -1,5 +1,7 @@
 package com.qa.constants;
 
+import java.time.Year;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,7 +16,8 @@ public class Constants {
 	public final String UPCOMING_MOVIE = "https://api.themoviedb.org/3/movie/now_playing?api_key=" + API_KEY_V3 + "&language=en-US&page=1&region=br";
 
 	//Followed by a name to query specific film
-	public final String SEARCH_MOVIE = "https://api.themoviedb.org/3/search/movie?api_key="+ API_KEY_V3 +"&query=";
+	public final int YEAR = Year.now().getValue();
+	public final String SEARCH_MOVIE = "https://api.themoviedb.org/3/search/movie?api_key=" + API_KEY_V3 +"&language=en-US&page=1&include_adult=false&primary_release_year=" + YEAR + "&query=";
 	
 	//sizes are: w500, w780, w342, w185, w154, w92
 	//baseurl + size + file_path
