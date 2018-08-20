@@ -20,7 +20,7 @@ public class MovieInfo {
 	private String popularity;
 	@JsonProperty("overview")	
 	private String description;
-	@JsonProperty("img")
+	@JsonProperty("poster_path")
 	private String img;
 	@JsonProperty("release_date")
 	private String releaseDate;
