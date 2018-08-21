@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.qa.Domain.Movie;
+import com.qa.Domain.MovieInfo;
 import com.qa.constants.Constants;
 
 @Service
@@ -34,6 +35,19 @@ public class MovieService {
 	public Movie findMovie(String search) {
 		setUp(constant.SEARCH_MOVIE + search);
 		return movie;
+	}
+
+	public String imageUrl(String movieName) {
+
+		String movieUrl = "";
+		setUp(constant.CURRENT_MOVIE);
+
+		for (MovieInfo x : movie.getMovieDetails()) {
+			if (x.getName().equalsIgnoreCase(movieName)) {
+				movieUrl = constant.POSTER_IMAGE_URL + x.getImg();
+			}
+		}
+		return movieUrl;
 	}
 
 }

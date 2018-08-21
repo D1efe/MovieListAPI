@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.qa.constants.Constants;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({ "id", "title", "popularity", "description", "img", "releaseDate" })
@@ -24,6 +25,8 @@ public class MovieInfo {
 	private String img;
 	@JsonProperty("release_date")
 	private String releaseDate;
+	
+	private Constants constant;
 
 	public MovieInfo() {
 
@@ -34,7 +37,7 @@ public class MovieInfo {
 		this.name = name;
 		this.popularity = popularity;
 		this.description = description;
-		this.img = img;
+		this.img = constant.THUMBNAIL_IMAGE_URL + img;
 		this.releaseDate = releaseDate;
 	}
 	

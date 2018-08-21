@@ -21,5 +21,7 @@ public class Constants {
 	
 	//sizes are: w500, w780, w342, w185, w154, w92
 	//baseurl + size + file_path
-	public final String IMAGE_URL = "https://image.tmdb.org/t/p/";
+	public final String THUMBNAIL_IMAGE_URL = "https://image.tmdb.org/t/p/w154";
+	public final String POSTER_IMAGE_URL = "https://image.tmdb.org/t/p/w500";
+
 }
