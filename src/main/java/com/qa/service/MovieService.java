@@ -20,6 +20,10 @@ public class MovieService {
 	private void setUp(String url) {
 		RestTemplate rest = new RestTemplate();
 		movie = rest.getForObject(url, Movie.class);
+		
+		for(MovieInfo x : movie.getMovieDetails()) {
+			x.setImg(constant.THUMBNAIL_IMAGE_URL + x.getImg());
+		}
 	}
 
 	public Movie currentMovies() {
@@ -35,19 +39,6 @@ public class MovieService {
 	public Movie findMovie(String search) {
 		setUp(constant.SEARCH_MOVIE + search);
 		return movie;
-	}
-
-	public String imageUrl(String movieName) {
-
-		String movieUrl = "";
-		setUp(constant.CURRENT_MOVIE);
-
-		for (MovieInfo x : movie.getMovieDetails()) {
-			if (x.getName().equalsIgnoreCase(movieName)) {
-				movieUrl = constant.POSTER_IMAGE_URL + x.getImg();
-			}
-		}
-		return movieUrl;
 	}
 
 }

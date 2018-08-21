@@ -37,14 +37,7 @@ public class MovieController {
 	@ResponseBody
 	public Movie searchForMovie(@PathVariable String search) {
 		return service.findMovie(search);
-	}
-	
-	@GetMapping("/movie-image/{search}")
-	@ResponseBody
-	public String movieImage(@PathVariable String search) {
-		return service.imageUrl(search);
-	}
-	
+	}	
 	
 	@GetMapping("/test/")
 	@ResponseBody
