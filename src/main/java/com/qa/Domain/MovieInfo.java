@@ -1,42 +1,43 @@
 package com.qa.Domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.qa.constants.Constants;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "name", "id", "popularity", "description", "img", "releaseDate" })
+@JsonPropertyOrder({ "id", "title", "popularity", "description", "img", "releaseDate" })
 
-@Entity
-public class Movie {
+@Component
+public class MovieInfo {
 
-	@Id
 	@JsonProperty("id")
 	private String id;
 	@JsonProperty("title")
 	private String name;
 	@JsonProperty("popularity")
 	private String popularity;
-	@JsonProperty("overview")
+	@JsonProperty("overview")	
 	private String description;
-	@JsonProperty("img")
+	@JsonProperty("poster_path")
 	private String img;
 	@JsonProperty("release_date")
 	private String releaseDate;
+	
+	private Constants constant;
 
-	public Movie() {
+	public MovieInfo() {
 
 	}
 
-	public Movie(String id, String name, String popularity, String description, String img, String releaseDate) {
+	public MovieInfo(String id, String name, String popularity, String description, String img, String releaseDate) {
 		this.id = id;
 		this.name = name;
 		this.popularity = popularity;
 		this.description = description;
-		this.img = img;
+		this.img = constant.THUMBNAIL_IMAGE_URL + img;
 		this.releaseDate = releaseDate;
 	}
 	
