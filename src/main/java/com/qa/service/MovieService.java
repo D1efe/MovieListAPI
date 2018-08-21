@@ -1,5 +1,9 @@
 package com.qa.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -15,15 +19,18 @@ public class MovieService {
 	private Movie movie;
 
 	@Autowired
+	private MovieInfo mInfo;
+
+	@Autowired
 	private Constants constant;
 
 	private void setUp(String url) {
 		RestTemplate rest = new RestTemplate();
 		movie = rest.getForObject(url, Movie.class);
-		
-//		for(MovieInfo x : movie.getMovieDetails()) {
-//			x.setImg(constant.THUMBNAIL_IMAGE_URL + x.getImg());
-//		}
+
+		// for(MovieInfo x : movie.getMovieDetails()) {
+		// x.setImg(constant.THUMBNAIL_IMAGE_URL + x.getImg());
+		// }
 	}
 
 	public Movie currentMovies() {
@@ -37,7 +44,17 @@ public class MovieService {
 	}
 
 	public Movie findMovie(String search) {
+
+		List<MovieInfo> movieList = new ArrayList<MovieInfo>();
 		setUp(constant.SEARCH_MOVIE + search);
+
+		for (MovieInfo filteredMovies : movie.getMovieDetails()) {
+			if (StringUtils.containsIgnoreCase(filteredMovies.getName(), search)) {
+				movieList.add(filteredMovies);
+			}
+			movie.setMovieDetails(movieList);
+		}
+
 		return movie;
 	}
 
