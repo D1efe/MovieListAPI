@@ -21,9 +21,9 @@ public class MovieService {
 		RestTemplate rest = new RestTemplate();
 		movie = rest.getForObject(url, Movie.class);
 		
-		for(MovieInfo x : movie.getMovieDetails()) {
-			x.setImg(constant.THUMBNAIL_IMAGE_URL + x.getImg());
-		}
+//		for(MovieInfo x : movie.getMovieDetails()) {
+//			x.setImg(constant.THUMBNAIL_IMAGE_URL + x.getImg());
+//		}
 	}
 
 	public Movie currentMovies() {
