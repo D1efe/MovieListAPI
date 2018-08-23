@@ -31,17 +31,19 @@ public class MovieService {
 		movie = rest.getForObject(url, Movie.class);
 
 		genreSetUp();
-		List<String> movieIdHolder = new ArrayList<>();
+		List<String> genreNamesList;
+		int count;
 
 		for (MovieInfo genreList : movie.getMovieDetails()) {
-			int count = 0;
-			for (String genreID : genreList.getGenres()) {
-				if (genreID.equals(genres.getGenreDetails().get(count).getId())) {
-					movieIdHolder.add(genres.getGenreDetails().get(count).getName());
-					count++;
+			genreNamesList = new ArrayList<>();
+			for (String genreId : genreList.getGenres()) {
+				for(count = 0; count < genres.getGenreDetails().size(); count++) {
+					if (genres.getGenreDetails().get(count).getId().matches(genreId)) {
+						genreNamesList.add(genres.getGenreDetails().get(count).getName());
+					}
 				}
 			}
-			genreList.setGenres(movieIdHolder);
+			genreList.setGenres(genreNamesList);
 		}
 	}
 
@@ -53,7 +55,7 @@ public class MovieService {
 	public List<String> loopTest() {
 		List<String> checkMe = new ArrayList<>();
 		int count = 0;
-		while(count < 10) {
+		while (count < 10) {
 			checkMe.add("" + count);
 			count++;
 		}
