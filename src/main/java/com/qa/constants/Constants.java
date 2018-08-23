@@ -23,5 +23,8 @@ public class Constants {
 	//baseurl + size + file_path
 	public final String THUMBNAIL_IMAGE_URL = "https://image.tmdb.org/t/p/w154";
 	public final String POSTER_IMAGE_URL = "https://image.tmdb.org/t/p/w500";
+	
+	//list of genres
+	public final String GENRE_LIST =  "https://api.themoviedb.org/3/genre/movie/list?api_key=" + API_KEY_V3 + "&language=en-US";
 
 }

@@ -9,28 +9,28 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "results" })
+@JsonPropertyOrder({ "genres" })
 
 @Component
-public class Movie {
-	
-	@JsonProperty("results")
-	private List<MovieInfo> movieDetails;
+public class Genre {
 
-	public Movie (List<MovieInfo> movieDetails) {
-		this.movieDetails = movieDetails;
+	@JsonProperty("genres")
+	private List<GenreInfo> GenreDetails;
+
+	public Genre (List<GenreInfo> GenreDetails) {
+		this.GenreDetails = GenreDetails;
 	}
 	
-	public Movie() {
+	public Genre() {
 		
 	}
 	
-	public void setMovieDetails(List<MovieInfo> movieDetails) {
-		this.movieDetails = movieDetails;
+	public void setGenreDetails(List<GenreInfo> GenreDetails) {
+		this.GenreDetails = GenreDetails;
 	}
 	
-	public List<MovieInfo> getMovieDetails() {
-		return movieDetails;
+	public List<GenreInfo> getGenreDetails() {
+		return GenreDetails;
 	}
 	
 	@Override

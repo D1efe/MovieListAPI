@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.qa.Domain.Genre;
+import com.qa.Domain.GenreInfo;
 import com.qa.Domain.Movie;
 import com.qa.Domain.MovieInfo;
 import com.qa.constants.Constants;
@@ -19,34 +21,59 @@ public class MovieService {
 	private Movie movie;
 
 	@Autowired
-	private MovieInfo mInfo;
+	private Genre genres;
 
 	@Autowired
 	private Constants constant;
 
-	private void setUp(String url) {
+	private void movieSetUp(String url) {
 		RestTemplate rest = new RestTemplate();
 		movie = rest.getForObject(url, Movie.class);
 
-		// for(MovieInfo x : movie.getMovieDetails()) {
-		// x.setImg(constant.THUMBNAIL_IMAGE_URL + x.getImg());
-		// }
+		genreSetUp();
+		List<String> movieIdHolder = new ArrayList<>();
+
+		for (MovieInfo genreList : movie.getMovieDetails()) {
+			int count = 0;
+			for (String genreID : genreList.getGenres()) {
+				if (genreID.equals(genres.getGenreDetails().get(count).getId())) {
+					movieIdHolder.add(genres.getGenreDetails().get(count).getName());
+					count++;
+				}
+			}
+			genreList.setGenres(movieIdHolder);
+		}
+	}
+
+	private void genreSetUp() {
+		RestTemplate rest = new RestTemplate();
+		genres = rest.getForObject(constant.GENRE_LIST, Genre.class);
+	}
+
+	public List<String> loopTest() {
+		List<String> checkMe = new ArrayList<>();
+		int count = 0;
+		while(count < 10) {
+			checkMe.add("" + count);
+			count++;
+		}
+		return checkMe;
 	}
 
 	public Movie currentMovies() {
-		setUp(constant.CURRENT_MOVIE);
+		movieSetUp(constant.CURRENT_MOVIE);
 		return movie;
 	}
 
 	public Movie upcomingMovies() {
-		setUp(constant.UPCOMING_MOVIE);
+		movieSetUp(constant.UPCOMING_MOVIE);
 		return movie;
 	}
 
 	public Movie findMovie(String search) {
 
 		List<MovieInfo> movieList = new ArrayList<MovieInfo>();
-		setUp(constant.SEARCH_MOVIE + search);
+		movieSetUp(constant.SEARCH_MOVIE + search);
 
 		for (MovieInfo filteredMovies : movie.getMovieDetails()) {
 			if (StringUtils.containsIgnoreCase(filteredMovies.getName(), search)) {

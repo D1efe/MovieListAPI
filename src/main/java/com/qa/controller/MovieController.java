@@ -1,5 +1,7 @@
 package com.qa.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,7 +43,7 @@ public class MovieController {
 	
 	@GetMapping("/test/")
 	@ResponseBody
-	public String test() {
-		return "test was successful";
+	public List<String> test() {
+		return service.loopTest();
 	}
 }
