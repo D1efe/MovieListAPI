@@ -1,7 +1,5 @@
 package com.qa.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,10 +38,5 @@ public class MovieController {
 	public Movie searchForMovie(@PathVariable String search) {
 		return service.findMovie(search);
 	}	
-	
-	@GetMapping("/test/")
-	@ResponseBody
-	public List<String> test() {
-		return service.loopTest();
-	}
+
 }

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.qa.Domain.Genre;
-import com.qa.Domain.GenreInfo;
 import com.qa.Domain.Movie;
 import com.qa.Domain.MovieInfo;
 import com.qa.constants.Constants;
@@ -50,16 +49,6 @@ public class MovieService {
 	private void genreSetUp() {
 		RestTemplate rest = new RestTemplate();
 		genres = rest.getForObject(constant.GENRE_LIST, Genre.class);
-	}
-
-	public List<String> loopTest() {
-		List<String> checkMe = new ArrayList<>();
-		int count = 0;
-		while (count < 10) {
-			checkMe.add("" + count);
-			count++;
-		}
-		return checkMe;
 	}
 
 	public Movie currentMovies() {
